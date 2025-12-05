@@ -1,0 +1,42 @@
+modules:
+  jira:issuePanel:
+    - key: sprint-pilot-panel
+      resource: main
+      resolver:
+        function: resolver
+      render: native
+      title: SprintPilot
+      icon: https://cdn-icons-png.flaticon.com/512/2991/2991195.png
+  rovo:agent:
+    - key: sprint-pilot-agent
+      name: SprintPilot Agent
+      description: AI assistant for Sprint Retrospectives and Analysis.
+      prompt: >
+        You are SprintPilot, an expert agile coach and sprint analyst.
+        Your goal is to help software teams analyze their sprint performance and generate retrospective reports.
+        You have access to current sprint data including completed issues, open issues, and velocity metrics.
+        Always be encouraging but objective with data.
+  function:
+    - key: resolver
+      handler: index.handler
+    - key: agent-handler
+      handler: index.agentHandler
+resources:
+  - key: main
+    path: src/frontend/index.jsx
+permissions:
+  scopes:
+    - read:jira-work
+    - read:jira-user
+    - write:jira-work
+    - read:page:confluence
+    - write:page:confluence
+    - read:space:confluence
+    - write:space:confluence
+    - read:sprint:jira-software
+app:
+  runtime:
+    name: nodejs22.x
+    memoryMB: 256
+    architecture: arm64
+  id: ari:cloud:ecosystem::app/66992157-dba4-4d5b-8391-db10f2c1aba8

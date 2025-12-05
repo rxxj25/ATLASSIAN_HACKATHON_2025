@@ -1,0 +1,6 @@
+@echo off
+echo Uninstalling SprintPilot...
+echo y | forge uninstall --site rajdeepbandyopadhaya-1764964726037.atlassian.net --product jira --environment development
+echo.
+echo Installing SprintPilot...
+echo y | forge install --site rajdeepbandyopadhaya-1764964726037.atlassian.net --product jira --environment development --confirm-scopes
